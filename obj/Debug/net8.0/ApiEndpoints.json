@@ -1,0 +1,54 @@
+[
+  {
+    "ContainingType": "server.Controllers.HotelController",
+    "Method": "GetHotels",
+    "RelativePath": "api/Hotel",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "server.Controllers.HotelController",
+    "Method": "CreateHotel",
+    "RelativePath": "api/Hotel",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "hotel",
+        "Type": "server.Models.Hotel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "server.Controllers.BookingController",
+    "Method": "GetBookings",
+    "RelativePath": "apt/Booking",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "server.Controllers.BookingController",
+    "Method": "BookRoom",
+    "RelativePath": "apt/Booking",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "booking",
+        "Type": "server.Models.Booking",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
