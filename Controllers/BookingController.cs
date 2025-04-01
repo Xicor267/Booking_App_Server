@@ -15,6 +15,7 @@ namespace server.Controllers
             _bookingService = bookingService;
         }
 
+
         [HttpGet]
         public async Task<IActionResult> GetBookings()
         {
