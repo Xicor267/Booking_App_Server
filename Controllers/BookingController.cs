@@ -5,7 +5,7 @@ using server.Services.Interfaces;
 namespace server.Controllers
 {
     [ApiController]
-    [Route("apt/[controller]")]
+    [Route("api/booking")]
     public class BookingController : ControllerBase
     {
         private readonly IBookingService _bookingService;

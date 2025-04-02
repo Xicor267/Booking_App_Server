@@ -1,8 +1,34 @@
 [
   {
+    "ContainingType": "server.Controllers.BookingController",
+    "Method": "GetBookings",
+    "RelativePath": "api/booking",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "server.Controllers.BookingController",
+    "Method": "BookRoom",
+    "RelativePath": "api/booking",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "booking",
+        "Type": "server.Models.Booking",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "server.Controllers.HotelController",
     "Method": "GetHotels",
-    "RelativePath": "api/Hotel",
+    "RelativePath": "api/hotel",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -12,7 +38,7 @@
   {
     "ContainingType": "server.Controllers.HotelController",
     "Method": "CreateHotel",
-    "RelativePath": "api/Hotel",
+    "RelativePath": "api/hotel",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -26,9 +52,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "server.Controllers.BookingController",
-    "Method": "GetBookings",
-    "RelativePath": "apt/Booking",
+    "ContainingType": "server.Controllers.UserController",
+    "Method": "GetUser",
+    "RelativePath": "api/user",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -36,16 +62,69 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "server.Controllers.BookingController",
-    "Method": "BookRoom",
-    "RelativePath": "apt/Booking",
+    "ContainingType": "server.Controllers.UserController",
+    "Method": "AddUser",
+    "RelativePath": "api/user",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "booking",
-        "Type": "server.Models.Booking",
+        "Name": "user",
+        "Type": "server.Models.User",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "server.Controllers.UserController",
+    "Method": "GetUserById",
+    "RelativePath": "api/user/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "server.Controllers.UserController",
+    "Method": "UpdateUser",
+    "RelativePath": "api/user/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "user",
+        "Type": "server.Models.User",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "server.Controllers.UserController",
+    "Method": "DeleteUser",
+    "RelativePath": "api/user/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
         "IsRequired": true
       }
     ],

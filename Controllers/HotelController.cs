@@ -5,7 +5,7 @@ using server.Services.Interfaces;
 namespace server.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/hotel")]
     public class HotelController : ControllerBase
     {
         private readonly IHotelService _hotelService;
