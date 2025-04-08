@@ -32,6 +32,9 @@ builder.Services.AddScoped<IHotelService, HotelService>();
 //User
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserServive, UserService>();
+//Room
+builder.Services.AddScoped<IRoomRepository, RoomRepository>();
+builder.Services.AddScoped<IRoomService, RoomService>();
 builder.Services.AddControllers();
 
 var app = builder.Build();

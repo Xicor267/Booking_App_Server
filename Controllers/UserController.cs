@@ -25,9 +25,9 @@ namespace server.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserById(Guid id)
         {
-            if (User == null) return NotFound();
-
             var user = await _userServive.GetUserByIdAsync(id);
+            if (user == null) return NotFound();
+
             return Ok(user);
         }
 
@@ -37,13 +37,13 @@ namespace server.Controllers
             if (user == null) return BadRequest();
 
             await _userServive.AddUserAsync(user);
-            return CreatedAtAction(nameof(GetUser), new {id = user.Id}, user);
+            return CreatedAtAction(nameof(GetUser), new {id = user.UserId}, user);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(Guid id, [FromBody] User user)
         {
-            if (user == null || id != user.Id) return BadRequest();
+            if (user == null || id != user.UserId) return BadRequest();
 
             var existingUser = await _userServive.GetUserByIdAsync(id);
             if (existingUser == null) return BadRequest();

@@ -17,13 +17,18 @@ namespace server.Services.Implementations
             return await _userRepository.GetUserAsync();
         }
 
-        public async Task<User> GetUserByIdAsync(Guid id)
+        public async Task<User?> GetUserByIdAsync(Guid id)
         {
             return await _userRepository.GetUserByIdAsync(id);
         }
 
         public async Task AddUserAsync(User user)
         {
+            if (user.UserId == Guid.Empty)
+            {
+                user.UserId = Guid.NewGuid();
+            }
+
             await _userRepository.AddUserAsync(user);
             await _userRepository.SaveAsync();
         }

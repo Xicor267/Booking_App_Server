@@ -30,7 +30,7 @@ namespace server.Repositories.Implementations
 
         public Task UpdateUserAsync(User user)
         {
-            _context.Entry(user).State = EntityState.Modified;
+            _context.Users.Entry(user).State = EntityState.Modified;
             return Task.CompletedTask;
         }
 
