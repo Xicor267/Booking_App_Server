@@ -456,3 +456,4 @@ C:\Users\nolan.nguyen\Downloads\Others\Practice\Clone\Booking_App_Server\bin\Deb
 C:\Users\nolan.nguyen\Downloads\Others\Practice\Clone\Booking_App_Server\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
 C:\Users\nolan.nguyen\Downloads\Others\Practice\Clone\Booking_App_Server\obj\Debug\net8.0\server.RazorAssemblyInfo.cache
 C:\Users\nolan.nguyen\Downloads\Others\Practice\Clone\Booking_App_Server\obj\Debug\net8.0\server.RazorAssemblyInfo.cs
+C:\Users\nolan.nguyen\Downloads\Others\Practice\Clone\Booking_App_Server\bin\Debug\net8.0\BCrypt.Net-Next.dll

@@ -11,6 +11,7 @@ namespace server.Data
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Room> Rooms { get; set; }
+        public DbSet<VisitorCount> VisitorCounts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -61,6 +62,13 @@ namespace server.Data
                 .WithOne(b => b.User)
                 .HasForeignKey(b => b.BookingId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<VisitorCount>()
+                .Property(v => v.Id)
+                .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<VisitorCount>()
+                .HasData(new VisitorCount { Count = 0, LastUpdated = new DateTime(2023, 1, 1) });
 
             base.OnModelCreating(modelBuilder);
         }

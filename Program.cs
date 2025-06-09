@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using server.Data;
+using server.Middleware;
 using server.Repositories.Implementations;
 using server.Repositories.Interfaces;
 using server.Services.Implementations;
@@ -35,6 +36,10 @@ builder.Services.AddScoped<IUserServive, UserService>();
 //Room
 builder.Services.AddScoped<IRoomRepository, RoomRepository>();
 builder.Services.AddScoped<IRoomService, RoomService>();
+
+builder.Services.AddScoped<IActiveUserRepository, ActiveUserRepository>();
+builder.Services.AddScoped<IActiveUserService, ActiveUserService>();
+
 builder.Services.AddControllers();
 
 var app = builder.Build();
@@ -48,6 +53,8 @@ app.UseSwaggerUI(c =>
 
 app.UseHttpsRedirection();
 app.UseCors("AllowAll");
+
+app.UseMiddleware<VisitorTrackingMiddleware>();
 
 app.MapControllers();
 

@@ -1,0 +1,17 @@
+{
+  "roomId": "3fa85f64-5717-4562-b3fc-2c963f66afa8",
+  "name": "Room 1",
+  "description": "This is a description of Room 1",
+  "price": 1000,
+  "capacity": 2,
+  "maxAdults": 2,
+  "maxChildren": 2,
+  "isAvailable": true,
+  "imageUrls": [
+    "slide (1)"
+  ],
+  "hotelId": "3fa85f64-5717-4562-b3fc-2c963f66afa5",
+  "hotel": null,
+  "roomAmenities": [],
+  "bookings": []
+}

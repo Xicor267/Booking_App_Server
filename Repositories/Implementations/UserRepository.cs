@@ -25,6 +25,7 @@ namespace server.Repositories.Implementations
 
         public async Task AddUserAsync(User user)
         {
+            user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
             await _context.Users.AddAsync(user);
         }
 

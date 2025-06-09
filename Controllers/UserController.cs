@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using server.DTO;
 using server.Models;
 using server.Services.Interfaces;
 
@@ -38,6 +39,23 @@ namespace server.Controllers
 
             await _userServive.AddUserAsync(user);
             return CreatedAtAction(nameof(GetUser), new {id = user.UserId}, user);
+        }
+
+        [HttpPost("signup")]
+        public async Task<IActionResult> SignUp([FromBody] RegisterDTO model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            string result = await _userServive.RegisterAsync(model);
+            if (result == "User already exists")
+            {
+                return BadRequest("User already exists");
+            }
+
+            return Ok(new { message = "User registered successfully", userId = result });
         }
 
         [HttpPut("{id}")]
