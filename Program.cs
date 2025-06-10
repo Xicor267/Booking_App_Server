@@ -36,9 +36,14 @@ builder.Services.AddScoped<IUserServive, UserService>();
 //Room
 builder.Services.AddScoped<IRoomRepository, RoomRepository>();
 builder.Services.AddScoped<IRoomService, RoomService>();
-
+//Active user count
 builder.Services.AddScoped<IActiveUserRepository, ActiveUserRepository>();
 builder.Services.AddScoped<IActiveUserService, ActiveUserService>();
+//Verify email
+builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<IVerificationCodeRepository, VerificationCodeRepository>();
+//PendingUser
+builder.Services.AddScoped<IPendingUserRepository, PendingUserRepository>();
 
 builder.Services.AddControllers();
 

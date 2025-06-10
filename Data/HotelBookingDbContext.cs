@@ -12,6 +12,8 @@ namespace server.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<VisitorCount> VisitorCounts { get; set; }
+        public DbSet<VerificationCode> VerificationCodes { get; set; }
+        public DbSet<PendingUser> PendingUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

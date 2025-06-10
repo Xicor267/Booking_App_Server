@@ -11,5 +11,6 @@ namespace server.Services.Interfaces
         Task UpdateUserAsync(User user);
         Task DeleteUserAsync(Guid id);
         Task<string> RegisterAsync(RegisterDTO model);
+        Task<bool> VerifyCodeAsync(string email, string code);
     }
 }

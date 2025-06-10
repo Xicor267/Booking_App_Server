@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using server.DTO;
 using server.Models;
+using server.Services.Implementations;
 using server.Services.Interfaces;
 
 namespace server.Controllers
@@ -38,7 +39,7 @@ namespace server.Controllers
             if (user == null) return BadRequest();
 
             await _userServive.AddUserAsync(user);
-            return CreatedAtAction(nameof(GetUser), new {id = user.UserId}, user);
+            return CreatedAtAction(nameof(GetUser), new { id = user.UserId }, user);
         }
 
         [HttpPost("signup")]
@@ -50,12 +51,29 @@ namespace server.Controllers
             }
 
             string result = await _userServive.RegisterAsync(model);
-            if (result == "User already exists")
+            if (result == "Invalid email format" || result == "Invalid phone number format" || result == "User already exists" || result == "User is pending verification")
             {
-                return BadRequest("User already exists");
+                return BadRequest(new { Message = result });
             }
 
-            return Ok(new { message = "User registered successfully", userId = result });
+            return Ok(new { Message = "Registration successful, please verify your email.", PendingUserId = result });
+        }
+
+        [HttpPost("verify")]
+        public async Task<IActionResult> VerifyCode([FromBody] VerifyCodeDTO model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var isValid = await _userServive.VerifyCodeAsync(model.Email, model.Code);
+            if (!isValid)
+            {
+                return BadRequest(new { Message = "Invalid or expired verification code." });
+            }
+
+            return Ok(new { Message = "Verification successful, user account activated." });
         }
 
         [HttpPut("{id}")]

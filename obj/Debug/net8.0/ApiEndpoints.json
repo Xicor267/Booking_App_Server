@@ -332,6 +332,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "server.Controllers.UserController",
+    "Method": "VerifyCode",
+    "RelativePath": "api/user/verify",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "server.DTO.VerifyCodeDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "server.Controllers.ActiveUserController",
     "Method": "GetVisitorCount",
     "RelativePath": "api/visitor-count",
