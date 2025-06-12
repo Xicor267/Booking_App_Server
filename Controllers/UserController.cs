@@ -76,6 +76,34 @@ namespace server.Controllers
             return Ok(new { Message = "Verification successful, user account activated." });
         }
 
+        [HttpPost("signin")]
+        public async Task<IActionResult> SignInAsync([FromBody] SignInDTO model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                var user = await _userServive.SignInAsync(model);
+                return Ok(new
+                {
+                    Message = "Sign in successful",
+                    UserId = user.UserId,
+                    Email = user.Email,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    PhoneNumber = user.PhoneNumber,
+                    Address = user.Address,
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An error occurred while signing in.", Error = ex.Message });
+            }
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(Guid id, [FromBody] User user)
         {

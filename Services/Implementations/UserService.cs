@@ -144,6 +144,27 @@ namespace server.Services.Implementations
             return true;
         }
 
+        public async Task<User> SignInAsync(SignInDTO model)
+        {
+            if (!IsValidEmail(model.Email))
+            {
+                throw new Exception("Invalid email format");
+            }
+
+            var user = (await _userRepository.GetUserAsync()).FirstOrDefault(u => u.Email == model.Email);
+            if (user == null)
+            {
+                throw new Exception("User does not exist");
+            }
+
+            if (!BCrypt.Net.BCrypt.Verify(model.Password, user.Password))
+            {
+                throw new Exception("Invalid password");
+            }
+
+            return user;
+        }
+
         private bool IsValidEmail(string email)
         {
             string pattern = @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$";

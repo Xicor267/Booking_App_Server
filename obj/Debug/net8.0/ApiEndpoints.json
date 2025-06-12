@@ -317,6 +317,22 @@
   },
   {
     "ContainingType": "server.Controllers.UserController",
+    "Method": "SignInAsync",
+    "RelativePath": "api/user/signin",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "server.DTO.SignInDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "server.Controllers.UserController",
     "Method": "SignUp",
     "RelativePath": "api/user/signup",
     "HttpMethod": "POST",
