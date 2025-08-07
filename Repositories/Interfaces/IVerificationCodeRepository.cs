@@ -6,6 +6,7 @@ namespace server.Repositories.Interfaces
     {
         Task AddVertificationCodeAsync(VerificationCode code);
         Task<VerificationCode> GetVerificationCodeAsync(string email, string code);
+        Task DeleteVerificationCodeAsync(Guid id);
         Task SaveAsync();
     }
 }

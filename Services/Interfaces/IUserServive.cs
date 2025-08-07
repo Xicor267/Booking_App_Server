@@ -13,5 +13,7 @@ namespace server.Services.Interfaces
         Task<string> RegisterAsync(RegisterDTO model);
         Task<bool> VerifyCodeAsync(string email, string code);
         Task<User> SignInAsync(SignInDTO model);
+        Task RequestPasswordResetAsyncs(string email);
+        Task UpdatePasswordAsync(string email, string token, string newPassword);
     }
 }

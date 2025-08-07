@@ -20,6 +20,8 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+<EmbeddedResource Include="Templates\PasswordReset.html" />
+   <EmbeddedResource Include="Templates\VerificationEmail.html" />
   </ItemGroup>
 
 </Project>

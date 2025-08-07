@@ -24,6 +24,15 @@ namespace server.Repositories.Implementations
             return await _context.VerificationCodes.FirstOrDefaultAsync(v => v.Email == email && v.Code == code && v.ExpiresAt > DateTime.UtcNow);
         }
 
+        public async Task DeleteVerificationCodeAsync(Guid id)
+        {
+            var code = await _context.VerificationCodes.FindAsync(id);
+            if (code != null)
+            {
+                _context.VerificationCodes.Remove(code);
+            }
+        }
+
         public async Task SaveAsync()
         {
             await _context.SaveChangesAsync();

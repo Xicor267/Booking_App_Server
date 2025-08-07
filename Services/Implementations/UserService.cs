@@ -176,5 +176,56 @@ namespace server.Services.Implementations
             string pattern = @"^(\+?[1-9]\d{1,14}|[0]\d{9})$";
             return Regex.IsMatch(phoneNumber, pattern);
         }
+
+        public async Task RequestPasswordResetAsyncs(string email)
+        {
+            var user = (await _userRepository.GetUserAsync()).FirstOrDefault(e => e.Email == email);
+            if (user == null)
+            {
+                throw new Exception("User does not exist");
+            }
+
+            var resetToken = Guid.NewGuid().ToString();
+
+            var verificationCode = new VerificationCode
+            {
+                Id = Guid.NewGuid(),
+                Email = email,
+                Code = resetToken,
+                CreatedAt = DateTime.UtcNow,
+                ExpiresAt = DateTime.UtcNow.AddHours(1)
+            };
+
+            await _verificationCodeRepository.AddVertificationCodeAsync(verificationCode);
+            await _verificationCodeRepository.SaveAsync();
+
+            var resetLink = $"http://localhost:3000/reset-password?token={resetToken}&email={Uri.EscapeDataString(email)}";
+
+            await _emailService.SendingPasswordResetEmail(email, resetLink);
+        }
+
+        public async Task UpdatePasswordAsync(string email, string token, string newPassword)
+        {
+            var verificationCode = (await _verificationCodeRepository.GetVerificationCodeAsync(email, token));
+
+            if (verificationCode == null || verificationCode.ExpiresAt < DateTime.UtcNow)
+            {
+                throw new Exception("Invalid or expired token");
+            }
+
+            var user = (await _userRepository.GetUserAsync()).FirstOrDefault(e => e.Email == email);
+            if (user == null)
+            {
+                throw new Exception("User does not exist");
+            }
+
+            user.Password = BCrypt.Net.BCrypt.HashPassword(newPassword);
+
+            await _userRepository.UpdateUserAsync(user);
+            await _userRepository.SaveAsync();
+
+            await _verificationCodeRepository.DeleteVerificationCodeAsync(verificationCode.Id);
+            await _verificationCodeRepository.SaveAsync();
+        }
     }
 }

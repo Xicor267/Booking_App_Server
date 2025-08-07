@@ -104,6 +104,47 @@ namespace server.Controllers
             }
         }
 
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> RequestPasswordReset([FromBody] string email)
+        {
+            try
+            {
+                var user = await _userServive.GetUserAsync();
+                if (user == null || !user.Any(u => u.Email == email))
+                {
+                    return NotFound(new { Message = "User not found." });
+                }
+
+                await _userServive.RequestPasswordResetAsyncs(email);
+                return Ok(new { Message = "Password reset request successful. Please check your email for further instructions." });
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An error occurred while requesting password reset.", Error = ex.Message });
+            }
+        }
+
+        [HttpPost("reset-password/update")]
+        public async Task<IActionResult> UpdatePassword([FromBody] UpdatePasswordDTO model)
+        {
+            try
+            {
+                // Ensure the email is provided in the request
+                if (string.IsNullOrEmpty(model.Email))
+                {
+                    return BadRequest(new { Message = "Email is required." });
+                }
+
+                await _userServive.UpdatePasswordAsync(model.Email, model.Token, model.NewPassword);
+                return Ok(new { Message = "Password updated successfully." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An error occurred while updating the password.", Error = ex.Message });
+            }
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(Guid id, [FromBody] User user)
         {
